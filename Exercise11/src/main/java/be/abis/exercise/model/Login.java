@@ -2,14 +2,14 @@ package be.abis.exercise.model;
 
 public class Login {
 
-	private String email;
+	private String emailAddress;
 	private String password;
 	
-	public String getEmail() {
-		return email;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 	public String getPassword() {
 		return password;

@@ -1,5 +1,6 @@
 package be.abis.exercise.service;
 
+import be.abis.exercise.dto.EnrolmentDTO;
 import be.abis.exercise.exception.EnrolException;
 import be.abis.exercise.model.Enrolment;
 import be.abis.exercise.model.Person;
@@ -18,7 +19,7 @@ public interface TrainingService {
 
     List<Session> findSessionsForCourse(String courseTitle);
 
-    public List<Enrolment> findEnrolments(int personId);
+    public List<EnrolmentDTO> findEnrolments(int personId);
 
-
+    public void cancelSession(int id);
 }

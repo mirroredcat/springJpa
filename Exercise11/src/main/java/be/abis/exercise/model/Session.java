@@ -1,16 +1,38 @@
 package be.abis.exercise.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name="sessions")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="skind", discriminatorType=DiscriminatorType.STRING)
 public class Session {
 
+    @Id
+    @SequenceGenerator(name = "session_seq", sequenceName = "sessions_sno_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "session_seq")
+    @Column(name="sno")
     private int sessionId;
+    @Column(name="sdate")
     private LocalDate startDate;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name="sins_pno")
     private Person instructor;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name="sloc_cono")
     private Company location;
+    @Column(name="skind", insertable = false, updatable = false)
     private String kind;
+    @Column(name="sincomes")
     private double income;
+    @Convert(converter = CancelConverter.class)
+    @Column(name="scancel")
     private boolean cancelled;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name="s_cid")
     private Course course;
 
     public Session(){}

@@ -1,12 +1,20 @@
 package be.abis.exercise.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Address {
 
-
+	@Column(name="costreet")
 	private String street;
+	@Column(name="costrno")
 	private String nr;
+	@Column(name="cotownno")
 	private String zipcode;
+	@Column(name="cotown")
 	private String town;
+	@Column(name="cocountr")
 	private String countryCode;
 
 	public Address() {

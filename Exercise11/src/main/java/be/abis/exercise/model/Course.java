@@ -1,18 +1,29 @@
 package be.abis.exercise.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="courses")
 public class Course {
 
+	@Id
+	@SequenceGenerator(name = "mySeqGen", sequenceName = "courses_cid_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mySeqGen")
+	@Column(name="cid")
     private int courseId;
+	@Column(name="cstitle")
 	private String shortTitle;
+	@Column(name="cltitle")
 	private String longTitle;
+	@Column(name="cdur")
 	private int numberOfDays;
+	@Column(name="caprice")
 	private double pricePerDay;
 	
 	public Course(){}
 	
-	public Course(int courseId, String shortTitle, String longTitle, int numberOfDays, double pricePerDay) {
+	public Course( String shortTitle, String longTitle, int numberOfDays, double pricePerDay) {
 		super();
-		this.courseId = courseId;
 		this.shortTitle = shortTitle;
 		this.longTitle = longTitle;
 		this.numberOfDays = numberOfDays;
@@ -21,9 +32,7 @@ public class Course {
 	public int getCourseId() {
 		return courseId;
 	}
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
-	}
+	public void setCourseId(int courseId) {	this.courseId = courseId;}
 	public String getShortTitle() {
 		return shortTitle;
 	}
